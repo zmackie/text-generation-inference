@@ -12,8 +12,10 @@ jobs:
       uses: actions/checkout@v2
     
     - name: Install Launcher
+      env:
+        BRANCH: ${{ github.head_ref }}
       id: install-launcher
-      run: cargo install --git https://github.com/${{ github.repository }} --branch ${{ github.head_ref }} text-generation-launcher
+      run: cargo install --git https://github.com/${{ github.repository }} --branch "$BRANCH" text-generation-launcher
     
     - name: Check launcher Docs are up-to-date
       run: |
